@@ -25,21 +25,19 @@ docker run -p 80:5000 -e "DatabaseProvider={UsedDatabaseProvider}" -e "Connectio
 
 Alternatively, you can use docker compose
 ```
-version: '3.7'
- 
 services:
   portal:
     image: "honzanoll/btcpayserver-stream:1.0.2"
-  environment:
-      - DatabaseProvider={UsedDatabaseProvider}
-      - ConnectionStrings:NpgsqlConnection={YourConnectionString}
-      - GlobalSettings:Infrastructure:FEUrl={YourHost}
-      - StreamlabsSettings:ClientId={YourStreamlabsAppClientId}
-      - StreamlabsSettings:ClientSecret={YourStreamlabsAppSecret}
-  volumes:
-      - {PathToStorage}:/Storage
-      - {PathToDatabase}:/Database
-  restart: always
+    environment:
+        - DatabaseProvider={UsedDatabaseProvider}
+        - ConnectionStrings:NpgsqlConnection={YourConnectionString}
+        - GlobalSettings:Infrastructure:FEUrl={YourHost}
+        - StreamlabsSettings:ClientId={YourStreamlabsAppClientId}
+        - StreamlabsSettings:ClientSecret={YourStreamlabsAppSecret}
+    volumes:
+        - {PathToStorage}:/Storage
+        - {PathToDatabase}:/Database
+    restart: always
 ```
 Then start the composition
 ```
